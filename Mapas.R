@@ -1,4 +1,4 @@
-#Map
+#Mapa de estres hidrico
 title = "Colima y el agua"
 subt = "Mapa de Estrés Hídrico"
 capt = "Fuente: WRI Aqueduct 2019"
@@ -7,8 +7,8 @@ gg<-df %>%
   geom_sf(aes(fill=score_estres), colour = NA)+
   labs(title=title,subtitle = subt, caption = capt)+
   scale_fill_viridis_c(option = "inferno", direction=-1,alpha = 0.8, name = "Nivel de estrés",
-                       breaks = c(1,2,3,4),
-                       labels = c("Bajo","Medio","Alto", "Extremo Alto"),
+                       breaks = c(0.9,1.9,2.9,3.1,4.5),
+                       labels = c("Bajo","Bajo Medio","Medio Alto","Alto", "Extremo Alto"),
                        guide = guide_legend(
                          direction = 'horizontal',
                          title.position = 'top',
@@ -24,6 +24,7 @@ gg<-df %>%
 
 gg
 
+#mapa de riesgo de sequia
 subt2 = "Mapa de Riesgo de Sequia en México"
 capt = "Fuente: WRI Aqueduct 2019"
 gg2<-df %>%
@@ -46,10 +47,13 @@ gg2<-df %>%
   theme(title=element_text(face='bold'),
         legend.position = 'bottom')
   
-  
-
-
 gg2
+
+colima<-df %>% 
+  filter(CVE_ENT==06)+
+  ggplot()+
+  geom_sf(aes(fill='purple'))
+
 
 theme(panel.grid.minor.x=element_blank(), panel.grid.major.x=element_blank(),
       panel.background = element_blank(),axis.title.x=element_blank(),
